@@ -15,28 +15,28 @@ body {
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .scoreboard {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .score {
-    font-size: 20px;
+    font-size: 24px;
     color: #333;
 }
 
 .choices {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .choice {
-    font-size: 50px;
+    font-size: 60px;
     cursor: pointer;
     transition: transform 0.2s;
 }
@@ -48,19 +48,19 @@ h1 {
 .hands {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    margin: 50px 0;
     position: relative;
 }
 
 .hand {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     background-color: #e0e0e0;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+    font-size: 60px;
     transition: transform 0.2s;
 }
 
@@ -73,8 +73,8 @@ h1 {
 }
 
 .result {
-    font-size: 24px;
-    margin-top: 20px;
+    font-size: 28px;
+    margin-top: 30px;
     color: #333;
     height: 30px;
 }
