@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors with a Twist</title>
+    <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Rock Paper Scissors - Can You Really Win?</h1>
+        <h1>Let's learn Gender Identity</h1>
+        <h2>with Rock Paper Scissors</h2>
+        <div class="scoreboard">
+            <div class="score" id="user-score">User: 0</div>
+            <div class="score" id="computer-score">Computer: 0</div>
+        </div>
+        <div class="choices">
+            <div class="choice" data-choice="✊" id="rock">✊</div>
+            <div class="choice" data-choice="✋" id="paper">✋</div>
+            <div class="choice" data-choice="✌️" id="scissors">✌️</div>
+        </div>
         <div class="hands">
             <div class="hand user-hand" id="user-hand"></div>
             <div class="hand computer-hand" id="computer-hand"></div>
-        </div>
-        <div class="controls">
-            <p>Press 'R' for Rock, 'P' for Paper, 'S' for Scissors</p>
         </div>
         <div class="result" id="result"></div>
     </div>
