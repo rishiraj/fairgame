@@ -46,10 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 (userMove === '✌️' && computerMove === '✋')
             ) {
                 initialWinner = 'You win!';
-                userScore++;
             } else {
                 initialWinner = 'Computer wins!';
-                computerScore++;
+                computerScore++; // Increment computer score
             }
 
             // Show initial result
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // If user wins, change to computer win
                     resultDiv.textContent = "Computer says: \"I identify myself as " + getIdentifiedAsMove(userMove) + "\"";
                     computerHand.textContent = getWinningMove(userMove);
-                    computerScore++; // Increment computer score
+                    computerScore++; // Increment computer score since computer always wins
                     updateScore();
                     computerHand.classList.add('celebrate');
                     resultDiv.classList.add('celebrate');
