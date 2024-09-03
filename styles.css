@@ -56,6 +56,15 @@ body {
     75% { transform: rotate(20deg); }
 }
 
+@keyframes celebrate {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+}
+
 .shake {
     animation: shake 0.5s;
+}
+
+.celebrate {
+    animation: celebrate 1s infinite;
 }
