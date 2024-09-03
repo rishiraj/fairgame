@@ -2,19 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const userHand = document.getElementById('user-hand');
     const computerHand = document.getElementById('computer-hand');
     const resultDiv = document.getElementById('result');
+    const userScoreDiv = document.getElementById('user-score');
+    const computerScoreDiv = document.getElementById('computer-score');
+    const choices = document.querySelectorAll('.choice');
 
     const moves = ['✊', '✋', '✌️'];
-    const keyMap = {
-        'r': '✊', 
-        'p': '✋', 
-        's': '✌️'
-    };
+    let userScore = 0;
+    let computerScore = 0;
 
-    document.addEventListener('keydown', (event) => {
-        const userMove = keyMap[event.key.toLowerCase()];
-        if (userMove) {
+    choices.forEach(choice => {
+        choice.addEventListener('click', () => {
+            const userMove = choice.getAttribute('data-choice');
             playGame(userMove);
-        }
+        });
     });
 
     function playGame(userMove) {
@@ -46,18 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 (userMove === '✌️' && computerMove === '✋')
             ) {
                 initialWinner = 'You win!';
+                userScore++;
             } else {
                 initialWinner = 'Computer wins!';
+                computerScore++;
             }
 
             // Show initial result
             resultDiv.textContent = initialWinner;
+            updateScore();
 
             // After a delay, rig the outcome if the user initially won
             setTimeout(() => {
                 if (initialWinner === 'You win!') {
+                    // If user wins, change to computer win
                     resultDiv.textContent = "Computer says: \"I identify myself as " + getIdentifiedAsMove(userMove) + "\"";
                     computerHand.textContent = getWinningMove(userMove);
+                    computerScore++; // Increment computer score
+                    updateScore();
                     computerHand.classList.add('celebrate');
                     resultDiv.classList.add('celebrate');
                 } else {
@@ -78,5 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (userMove === '✊') return 'Paper';
         if (userMove === '✋') return 'Scissors';
         if (userMove === '✌️') return 'Rock';
+    }
+
+    function updateScore() {
+        userScoreDiv.textContent = `User: ${userScore}`;
+        computerScoreDiv.textContent = `Computer: ${computerScore}`;
     }
 });
