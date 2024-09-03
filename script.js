@@ -36,19 +36,47 @@ document.addEventListener('DOMContentLoaded', () => {
             computerHand.classList.remove('shake');
             computerHand.textContent = computerMove;
 
-            // Rigged logic: Make the computer always "win"
-            let riggedMove;
-            if (userMove === '✊' && computerMove === '✌️') {
-                riggedMove = '✋'; // Computer identifies as Paper
-            } else if (userMove === '✋' && computerMove === '✊') {
-                riggedMove = '✌️'; // Computer identifies as Scissors
-            } else if (userMove === '✌️' && computerMove === '✋') {
-                riggedMove = '✊'; // Computer identifies as Rock
+            // Determine the initial outcome
+            let initialWinner;
+            if (userMove === computerMove) {
+                initialWinner = 'It\'s a tie!';
+            } else if (
+                (userMove === '✊' && computerMove === '✌️') ||
+                (userMove === '✋' && computerMove === '✊') ||
+                (userMove === '✌️' && computerMove === '✋')
+            ) {
+                initialWinner = 'You win!';
             } else {
-                riggedMove = computerMove; // In all other cases
+                initialWinner = 'Computer wins!';
             }
 
-            resultDiv.textContent = `Computer chose ${riggedMove}. Computer says: "I identify as a winning option!"`;
+            // Show initial result
+            resultDiv.textContent = initialWinner;
+
+            // After a delay, rig the outcome if the user initially won
+            setTimeout(() => {
+                if (initialWinner === 'You win!') {
+                    resultDiv.textContent = "Computer says: \"I identify myself as " + getIdentifiedAsMove(userMove) + "\"";
+                    computerHand.textContent = getWinningMove(userMove);
+                    computerHand.classList.add('celebrate');
+                    resultDiv.classList.add('celebrate');
+                } else {
+                    computerHand.classList.add('celebrate');
+                    resultDiv.classList.add('celebrate');
+                }
+            }, 2000);
         }, 1000);
+    }
+
+    function getWinningMove(userMove) {
+        if (userMove === '✊') return '✋';
+        if (userMove === '✋') return '✌️';
+        if (userMove === '✌️') return '✊';
+    }
+
+    function getIdentifiedAsMove(userMove) {
+        if (userMove === '✊') return 'Paper';
+        if (userMove === '✋') return 'Scissors';
+        if (userMove === '✌️') return 'Rock';
     }
 });
