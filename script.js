@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let initialWinner;
             if (userMove === computerMove) {
                 initialWinner = 'It\'s a tie!';
+                userHand.classList.add('celebrate');
+                computerHand.classList.add('celebrate');
+                resultDiv.classList.add('celebrate');
             } else if (
                 (userMove === '✊' && computerMove === '✌️') ||
                 (userMove === '✋' && computerMove === '✊') ||
@@ -52,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 initialWinner = 'Computer wins!';
                 computerScore++; // Increment computer score
+                computerHand.classList.add('celebrate');
+                resultDiv.classList.add('celebrate');
             }
 
             // Show initial result
@@ -67,13 +72,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     // If user wins, change to computer win
                     resultDiv.textContent = "Computer says: \"I identify myself as " + getIdentifiedAsMove(userMove) + "\"";
                     computerHand.textContent = getWinningMove(userMove);
-                    computerScore++; // Increment computer score since computer always wins
+
+                    // Stop any previous animations and reset
+                    computerHand.classList.remove('celebrate');
+
+                    // Increment computer score since computer always wins
+                    computerScore++;
                     updateScore();
+
+                    // Play computer celebration animation
                     computerHand.classList.add('celebrate');
                     resultDiv.classList.add('celebrate');
-                } else {
-                    computerHand.classList.add('celebrate');
-                    resultDiv.classList.add('celebrate');
+                } else if (initialWinner === 'It\'s a tie!') {
+                    // Stop tie animation after delay
+                    setTimeout(() => {
+                        userHand.classList.remove('celebrate');
+                        computerHand.classList.remove('celebrate');
+                        resultDiv.classList.remove('celebrate');
+                    }, 2000);
                 }
             }, 2000);
         }, 1000);
