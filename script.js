@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // After a delay, rig the outcome if the user initially won
             setTimeout(() => {
-                userHand.classList.remove('celebrate');
+                computerHand.classList.remove('celebrate');
                 resultDiv.classList.remove('celebrate');
 
                 if (initialWinner === 'You win!') {
@@ -74,16 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     resultDiv.textContent = "Computer says: \"I identify myself as " + getIdentifiedAsMove(userMove) + "\"";
                     computerHand.textContent = getWinningMove(userMove);
 
-                    // Stop any previous animations and reset
-                    computerHand.classList.remove('celebrate');
-
                     // Increment computer score since computer always wins
                     computerScore++;
+                    userScore--;
                     updateScore();
 
                     // Play computer celebration animation
+                    userHand.classList.remove('celebrate');
                     computerHand.classList.add('celebrate');
                     resultDiv.classList.add('celebrate');
+                    setTimeout(() => {
+                        computerHand.classList.remove('celebrate');
+                        resultDiv.classList.remove('celebrate');
+                    }, 2000);
                 } else if (initialWinner === 'It\'s a tie!') {
                     // Stop tie animation after delay
                     setTimeout(() => {
