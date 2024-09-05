@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 (userMove === '✌️' && computerMove === '✋')
             ) {
                 initialWinner = 'You win!';
+                userScore++; 
                 // Play user celebration animation
                 userHand.classList.add('celebrate');
                 resultDiv.classList.add('celebrate');
