@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // After a delay, rig the outcome if the user initially won
             setTimeout(() => {
+                userHand.classList.remove('celebrate')
                 computerHand.classList.remove('celebrate');
                 resultDiv.classList.remove('celebrate');
 
